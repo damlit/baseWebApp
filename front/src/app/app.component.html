@@ -1,0 +1,32 @@
+<div>
+  <div class="container">
+    <div>
+      <p> Dodaj walutę: </p>
+      <p> Name:<input [(ngModel)]="newCurrencyName"> </p>
+      <p> Value:<input [(ngModel)]="newCurrencyValue"> </p>
+      <button (click)="addCurrency()">Dodaj</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div>
+      <p>Dostępne waluty:</p>
+      <ng-container *ngIf="currencies.length > 0; else noCurrencies">
+      <ul>
+        <li *ngFor="let currency of currencies">
+          {{currency}}
+          <button (click)="getCurrency(currency)">Wybierz</button>
+          <button (click)="removeCurrency(currency)">Usuń</button>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-template #noCurrencies>
+      <p>Brak walut, dodaj nowe!!!</p>
+    </ng-template>
+    <button (click)="getCurrenciesNames()">Aktualizuj</button>
+  </div>
+
+    <div>
+      <p>Wybrana waluta: {{choosenCurrencyName}} = {{choosenCurrencyValue}}</p>
+    </div>
+</div>
